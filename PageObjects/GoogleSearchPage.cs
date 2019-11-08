@@ -15,11 +15,8 @@ namespace GoogleSearch
     [Binding]
     public class GoogleSearchPage : Hooks
     {
-        //public string URL { get; set; }
-        //public Hooks driver;
         public string GoToGooglePage(string url)
         {
-            //BeforeScenario();
             return Driver.Url = url;
         }
         private IWebElement GetTxtSearch()
@@ -29,7 +26,6 @@ namespace GoogleSearch
 
         public IWebElement GetExpectedResult()
         {
-            // return Driver.FindElement(By.CssSelector("h3.r > a"));
            IList<IWebElement> listItem = Driver.FindElements(By.XPath("//h3[contains(text(),LC20lb)]"));
 
             foreach (IWebElement item in listItem)

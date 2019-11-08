@@ -18,23 +18,13 @@ namespace GoogleSearch
     {
         public static IWebDriver Driver { get; private set; }
 
-        //protected IWebDriver driver;
-
         [BeforeFeature]
         public static void BeforeScenario()
         {
-           // Driver = null;
-
-            //using (Driver = new ChromeDriver())
-            //{
-            //}
             try
             {
-                
                 Driver = new ChromeDriver();
                 // Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
-
-                //Driver.Url = "blabla";
             }
             catch (DriverServiceNotFoundException erro)
             {
@@ -45,10 +35,10 @@ namespace GoogleSearch
                 Console.WriteLine("Ocorreu um erro genérico");
                 throw e;
             }
-            //finally
-            //{
-            //    Driver.Quit();
-            //}
+            finally
+            {
+                Driver.Quit();
+            }
         }
 
         [AfterFeature]

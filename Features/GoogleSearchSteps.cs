@@ -25,7 +25,6 @@ namespace GoogleSearch
         [Then(@"I found results I was searching for")]
         public void ThenIFoundResultsIWasSearchingFor()
         {
-            //GoogleSearchPageAsserter.GoogleSearchReturnsCorrectResponse(googlePage);
             googlePage.GetExpectedResult();
             GoogleSearchPageAsserter.GoogleSearchReturnsCorrectResponse(googlePage);
         }

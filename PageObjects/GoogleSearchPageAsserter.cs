@@ -12,9 +12,7 @@ namespace GoogleSearch
     {
         public static void GoogleSearchReturnsCorrectResponse(this GoogleSearchPage page)
         {
-            // Assert.Equals(page.ExpectedResult(), "C# Online Test");
             Assert.IsTrue(page.SeeResultSiteTitle().Contains("C# Online Test"));
-            // Assert.AreEqual(page.SeeResultSiteTitle(), "C# Online Test");
         }
 
     }
