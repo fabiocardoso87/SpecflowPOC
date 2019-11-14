@@ -1,6 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using BoDi;
+using GoogleSearch.Driver;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Interactions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,21 +15,32 @@ using TechTalk.SpecFlow;
 
 namespace GoogleSearch
 {
-    [Binding]
-    public class GoogleSearchPage : Hooks
+    public class GoogleSearchPage
     {
-        public string GoToGooglePage(string url)
+        private readonly IWebDriver driver;
+
+        private readonly By txtSearch = By.Name("q");
+        private readonly By expectedResult = By.XPath("//h3[contains(text(),LC20lb)]");
+        private readonly By expectedMessage = By.XPath("//h1[@class='inline-block page-title-big']");
+
+        public GoogleSearchPage(IWebDriver driver)
         {
-            return Driver.Url = url;
+            this.driver = driver;
         }
-        private IWebElement GetTxtSearch()
+
+        public void GoToGooglePage(string url)
         {
-            return Driver.FindElement(By.Name("q"));
+            driver.Url = url;
+        }
+
+        public IWebElement GetTxtSearch()
+        {
+            return driver.FindElement(txtSearch);
         }
 
         public IWebElement GetExpectedResult()
         {
-           IList<IWebElement> listItem = Driver.FindElements(By.XPath("//h3[contains(text(),LC20lb)]"));
+            IList<IWebElement> listItem = driver.FindElements(expectedResult);
 
             foreach (IWebElement item in listItem)
             {
@@ -34,12 +48,11 @@ namespace GoogleSearch
                 {
                     item.Click();
                     return item;
-                   // break;
                 }
             }
 
             return (IWebElement)listItem;
-            
+
         }
 
         public void FillTxtSearch(string search)
@@ -52,14 +65,9 @@ namespace GoogleSearch
             GetTxtSearch().Submit();
         }
 
-        public string ExpectedResult()
-        {
-            return GetExpectedResult().Text;
-        }
-
         public IWebElement GetMsgResultSite()
         {
-            return Driver.FindElement(By.XPath("//h1[@class='inline-block page-title-big']"));
+            return driver.FindElement(expectedMessage);
         }
 
         public string SeeResultSiteTitle()
@@ -68,3 +76,4 @@ namespace GoogleSearch
         }
     }
 }
+
