@@ -21,7 +21,7 @@ namespace GoogleSearch.Driver
                     //Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
                     break;
                 default:
-                    Console.WriteLine("Browser" + browser + "is invalid. Please check available options.");
+                    Console.WriteLine("Browser" + browser + "is invalid. Please check available options");
                     break;
             }
 
