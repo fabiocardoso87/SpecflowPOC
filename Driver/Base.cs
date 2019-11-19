@@ -12,9 +12,9 @@ using TechTalk.SpecFlow;
 namespace GoogleSearch.Driver
 {
     [Binding]
-    public class Base
+    public class Base : BrowserFactory
     {
-        public IWebDriver driver;
+        //public IWebDriver driver;
         public WebDriverWait wait;
 
         private readonly IObjectContainer container;
@@ -27,13 +27,8 @@ namespace GoogleSearch.Driver
         [BeforeScenario]
         public void Setup()
         {
-            if (driver == null)
-            {
-                driver = new ChromeDriver();
-                // Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
-                container.RegisterInstanceAs<IWebDriver>(driver);
-            }
-            
+            OpenBrowser("chrome");
+            container.RegisterInstanceAs<IWebDriver>(driver);            
         }
 
         [AfterScenario]

@@ -130,6 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Driver\Base.cs" />
+    <Compile Include="Driver\BrowserFactory.cs" />
     <Compile Include="Driver\Hooks.cs" />
     <Compile Include="Features\GoogleSearchSteps.cs" />
     <Compile Include="PageObjects\GoogleSearchPage.cs" />
