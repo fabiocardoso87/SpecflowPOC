@@ -14,7 +14,6 @@ namespace GoogleSearch.Driver
     [Binding]
     public class Base : BrowserFactory
     {
-        //public IWebDriver driver;
         public WebDriverWait wait;
 
         private readonly IObjectContainer container;
